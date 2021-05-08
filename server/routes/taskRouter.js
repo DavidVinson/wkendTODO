@@ -10,6 +10,7 @@ router.post('/', (req, res) => {
     // console.log(req.params);
     
     let task = req.body;
+    // let taskid = req.params.id;
     let queryText = `INSERT INTO "tasks" ("task_name")
     VALUES ($1);`;
     pool.query(queryText, [task.task_name])
@@ -36,6 +37,46 @@ router.get('/', (req, res) => {
         res.sendStatus(500);
     })
 });
+
+router.put('/:id', (req, res) => {
+    //route to a new task
+    // console.log(req.body);
+    console.log(req.params);
+    
+    // let task = req.body;
+    let taskid = req.params.id;
+    let queryText = `UPDATE "tasks" SET "isComp"=TRUE, "completed_at"=CURRENT_TIMESTAMP
+    WHERE "id"=$1;`;
+    pool.query(queryText, [taskid])
+    .then((result) => {
+        console.log(result);
+        res.sendStatus(201);
+    })
+    .catch((error) => {
+        console.log(`the error: ${error}`);
+        res.sendStatus(500);
+    })
+});
+
+router.delete('/:id', (req, res) => {
+    //route to a new task
+    // console.log(req.body);
+    console.log(req.params);
+    
+    // let task = req.body;
+    let taskid = req.params.id;
+    let queryText = `DELETE FROM "tasks" WHERE "id"=$1;`;
+    pool.query(queryText, [taskid])
+    .then((result) => {
+        console.log(result);
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        console.log(`the error: ${error}`);
+        res.sendStatus(500);
+    })
+});
+
 
 
 //export router to be mounted in server.js
