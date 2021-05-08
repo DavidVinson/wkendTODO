@@ -8,15 +8,27 @@ function onReady() {
 
 //button listeners
 function setButtonListeners() {
-    //button to add task
+    //button adds task via POST
     $('.btn-add').on('click', (event) => {
         console.log('clicked add task button');
+        $.ajax({
+            method: 'POST',
+            url: '/tasks',
+            data: {
+                task_name: $('#task-name').val()
+            }
+        }).then((response) => {
+            // console.log(response);
+            getTasks()
+        }).catch((error) => {
+            console.log('There was a problem with adding a task', error);
+        })
     });
-
+    //button sets task complete via PUT
     $('#task-content').on('click', '.btn-comp', (event) => {
         console.log('complete button clicked');
     });
-
+    //button deletes task via DELETE
     $('#task-content').on('click', '.btn-del', (event) => {
         console.log('delete button clicked');
     });
@@ -38,6 +50,7 @@ function getTasks() {
 //displays tasks on the DOM
 function displayTasks(tasks) {
     console.log(tasks);
+    $('#task-content').empty();
     for (let i=0; i < tasks.length; i++) {
         //make buttons to complete and delete a task
         let btnDel = `<button class="btn-del" data-id=${tasks[i].id}>Delete</button>`;
