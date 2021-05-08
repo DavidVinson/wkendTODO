@@ -25,11 +25,11 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    console.log('get tasks here');
-    const queryText = `SELECT * FROM "tasks";`;
+    // console.log('get tasks here');
+    const queryText = `SELECT * FROM "tasks" ORDER BY "isComp" DESC;`;
     pool.query(queryText)
     .then((result) => {
-        console.log(result);
+        // console.log(result);
         res.send(result.rows);
     })
     .catch((error) => {
@@ -39,7 +39,8 @@ router.get('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    //route to a new task
+    //route to a update a task
+    //expected object:  { id: '4' }
     // console.log(req.body);
     console.log(req.params);
     
@@ -49,7 +50,7 @@ router.put('/:id', (req, res) => {
     WHERE "id"=$1;`;
     pool.query(queryText, [taskid])
     .then((result) => {
-        console.log(result);
+        // console.log(result);
         res.sendStatus(201);
     })
     .catch((error) => {
@@ -59,7 +60,8 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    //route to a new task
+    //route to delete a task
+    //expected object:  { id: '4' }
     // console.log(req.body);
     console.log(req.params);
     
@@ -68,7 +70,7 @@ router.delete('/:id', (req, res) => {
     let queryText = `DELETE FROM "tasks" WHERE "id"=$1;`;
     pool.query(queryText, [taskid])
     .then((result) => {
-        console.log(result);
+        // console.log(result);
         res.sendStatus(200);
     })
     .catch((error) => {
@@ -76,6 +78,8 @@ router.delete('/:id', (req, res) => {
         res.sendStatus(500);
     })
 });
+
+
 
 
 
