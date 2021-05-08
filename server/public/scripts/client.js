@@ -50,6 +50,7 @@ function getTasks() {
         url: '/tasks'
     }).then((response) => {
         displayTasks(response);
+        displayCount(response);
     }).catch((error) => {
         console.log('there is a problem with the GET request', error);
     });
@@ -66,7 +67,7 @@ function completeTask(event) {
     }).then((response) => {
         // console.log(response);
         clearFields();
-        getTasks()
+        getTasks();
     }).catch((error) => {
         console.log('There was a problem with completing task', error);
     }); 
@@ -82,7 +83,7 @@ function deleteTask(event) {
     }).then((response) => {
         // console.log(response);
         clearFields();
-        getTasks()
+        getTasks();
     }).catch((error) => {
         console.log('There was a problem with deleting task', error);
     }); 
@@ -94,10 +95,12 @@ function displayTasks(tasks) {
     console.log(tasks);
     $('#task-content').empty();
     for (let i=0; i < tasks.length; i++) {
+
         //make buttons to complete and delete a task
         let btnDel = `<button class="btn-del" data-id=${tasks[i].id}>Delete</button>`;
         let btnComp = `<button class="btn-comp" data-id=${tasks[i].id}>Complete</button>`;
-    
+
+        //append to the DOM
         $('#task-content').append(`
         <tr>
         <td>${tasks[i].task_name}</td>
@@ -105,6 +108,33 @@ function displayTasks(tasks) {
         <td>${btnDel}</td>
         </tr>`);
     }   
+}
+
+
+//display counters
+function displayCount(tasks) {
+    //tasks = [ {task}, {task} ]
+    console.log(tasks);
+    $('.count-content span').empty();
+    let compCnt = 0;
+    let readyCnt = 0;
+    let totalCnt = tasks.length;
+    
+    for (let i=0; i < tasks.length; i++) {
+
+        //check for count of completed tasks
+        if (tasks[i].isComp) {
+            compCnt += 1;
+        }
+        else {
+            readyCnt += 1;
+        }
+    } 
+
+    //update the counts to the DOM
+    $('#total-count').text(`${totalCnt}`);
+    $('#ready-count').text(`${readyCnt}`);
+    $('#comp-count').text(`${compCnt}`);
 }
 
 
