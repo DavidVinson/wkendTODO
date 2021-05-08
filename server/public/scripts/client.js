@@ -9,21 +9,8 @@ function onReady() {
 //button listeners
 function setButtonListeners() {
     //button adds task via POST
-    $('.btn-add').on('click', (event) => {
-        console.log('clicked add task button');
-        $.ajax({
-            method: 'POST',
-            url: '/tasks',
-            data: {
-                task_name: $('#task-name').val()
-            }
-        }).then((response) => {
-            // console.log(response);
-            getTasks()
-        }).catch((error) => {
-            console.log('There was a problem with adding a task', error);
-        })
-    });
+    $('.btn-add').on('click', addTask);
+        
     //button sets task complete via PUT
     $('#task-content').on('click', '.btn-comp', (event) => {
         console.log('complete button clicked');
@@ -34,6 +21,22 @@ function setButtonListeners() {
     });
 }
 
+function addTask() {
+    console.log('clicked add task button');
+    $.ajax({
+        method: 'POST',
+        url: '/tasks',
+        data: {
+            task_name: $('#task-name').val()
+        }
+    }).then((response) => {
+        // console.log(response);
+        clearFields();
+        getTasks()
+    }).catch((error) => {
+        console.log('There was a problem with adding a task', error);
+    }); 
+}
 
 //GET call
 function getTasks() {
@@ -63,6 +66,11 @@ function displayTasks(tasks) {
         <td>${btnDel}</td>
         </tr>`);
     }   
+}
+
+function clearFields() {
+    console.log('fields are clear');
+    $('#task-name').val('');
 }
 
 
