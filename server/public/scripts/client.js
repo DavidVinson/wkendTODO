@@ -1,10 +1,9 @@
 function onReady() {
     console.log('jquery loaded...keep it simple');
     getTasks();
-    setButtonListeners();
-
-    
+    setButtonListeners(); 
 }
+
 
 //button listeners
 function setButtonListeners() {
@@ -14,13 +13,18 @@ function setButtonListeners() {
     //button sets task complete via PUT
     $('#task-content').on('click', '.btn-comp', (event) => {
         console.log('complete button clicked');
+        completeTask(event);
     });
+
     //button deletes task via DELETE
     $('#task-content').on('click', '.btn-del', (event) => {
         console.log('delete button clicked');
+        deleteTask(event);
     });
 }
 
+
+//POST call
 function addTask() {
     console.log('clicked add task button');
     $.ajax({
@@ -38,6 +42,7 @@ function addTask() {
     }); 
 }
 
+
 //GET call
 function getTasks() {
     $.ajax({
@@ -49,6 +54,40 @@ function getTasks() {
         console.log('there is a problem with the GET request', error);
     });
 }
+
+
+//PUT call
+function completeTask(event) {
+    let taskid = event.target.dataset.id;
+    // console.log(taskid);
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/${taskid}`,
+    }).then((response) => {
+        // console.log(response);
+        clearFields();
+        getTasks()
+    }).catch((error) => {
+        console.log('There was a problem with completing task', error);
+    }); 
+}
+
+
+function deleteTask(event) {
+    let taskid = event.target.dataset.id;
+    console.log(`task ${taskid} was removed`);
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${taskid}`,
+    }).then((response) => {
+        // console.log(response);
+        clearFields();
+        getTasks()
+    }).catch((error) => {
+        console.log('There was a problem with deleting task', error);
+    }); 
+}
+
 
 //displays tasks on the DOM
 function displayTasks(tasks) {
@@ -68,15 +107,12 @@ function displayTasks(tasks) {
     }   
 }
 
+
+//clears fields on the DOM
 function clearFields() {
     console.log('fields are clear');
     $('#task-name').val('');
 }
-
-
-
-
-
 
 
 $(onReady);
