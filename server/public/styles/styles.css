@@ -37,3 +37,7 @@ table {
 .orange-border {
     border: 5px solid orange;
 }
+
+.red-border {
+    border: 2px solid red;
+}

@@ -8,7 +8,10 @@ function onReady() {
 //button listeners
 function setButtonListeners() {
     //button adds task via POST
-    $('.btn-add').on('click', addTask);
+    $('.btn-add').on('click', (event) => {
+        fieldValidation();
+    });
+
         
     //button sets task complete via PUT
     $('#task-content').on('click', '.btn-comp', (event) => {
@@ -22,6 +25,20 @@ function setButtonListeners() {
         console.log('delete button clicked');
         deleteTask(event);
     });
+}
+
+
+//validate user input
+function fieldValidation(event) {
+    if (!$('#task-name').val()) {
+        console.log('empty field');
+        $('#task-name').addClass('red-border');
+    }
+    else {
+        addTask();
+        clearFields();
+        $('#task-name').removeClass('red-border');
+    }
 }
 
 
