@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="vendors/jquery.js"></script>
     <script src="scripts/client.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css"/>
     <title>Weekend Warrior</title>
 </head>
 <body>
 
-    <h1>Weekend Warrior</h1>
+    <h1>Weekend Warrior Challenge</h1>
     <div class="count-content">
         <span class="black" id="total-count">TOTAL-COUNT</span>
         <span class="yellow" id="ready-count">READY-COUNT</span>
@@ -22,10 +25,10 @@
         <input class="task-input" id="task-name" placeholder="what's next?"/>
         <button class="btn-add">add task</button>
     </div>
-    <div>
-        <table>
+    <div class="table-responsive">
+        <table class="table table-striped">
             <thead>
-                <th>Task</th>
+                <th id="task-head">Task</th>
                 <th></th>
                 <th></th>
             </thead>
@@ -34,6 +37,8 @@
             </tbody>
         </table>
     </div>
-    
+
+    <!-- bootstrap bundled with js popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@ function setButtonListeners() {
     //button sets task complete via PUT
     $('#task-content').on('click', '.btn-comp', (event) => {
         console.log('complete button clicked');
-        $(event.target).closest('tr').addClass('green');
+        // $(event.target).closest('tr').addClass('green');
         completeTask(event);
     });
 
@@ -113,21 +113,20 @@ function displayTasks(tasks) {
     console.log(tasks);
     $('#task-content').empty();
     for (let i=0; i < tasks.length; i++) {
-
         //make buttons to complete and delete a task
         let btnDel = `<button class="btn-del" data-id=${tasks[i].id}>Delete</button>`;
         let btnComp = `<button class="btn-comp" data-id=${tasks[i].id}>Complete</button>`;
         let rowStatus = '';
         if (tasks[i].isComp) {
-            rowStatus = 'green';
+            rowStatus = 'table-success'; //bootstrap class
         }
         else {
-            rowStatus = 'yellow';
+            rowStatus = 'table-dark'; //bootstrap class
         }
 
         //append to the DOM
         $('#task-content').append(`
-        <tr class=${rowStatus}>
+        <tr class="${rowStatus} .col-md-4">
         <td>${tasks[i].task_name}</td>
         <td>${btnComp}</td>
         <td>${btnDel}</td>
@@ -146,7 +145,6 @@ function displayCount(tasks) {
     let totalCnt = tasks.length;
     
     for (let i=0; i < tasks.length; i++) {
-
         //check for count of completed tasks
         if (tasks[i].isComp) {
             compCnt += 1;
@@ -155,11 +153,10 @@ function displayCount(tasks) {
             readyCnt += 1;
         }
     } 
-
     //update the counts to the DOM
-    $('#total-count').text(`${totalCnt}`);
-    $('#ready-count').text(`${readyCnt}`);
-    $('#comp-count').text(`${compCnt}`);
+    $('#total-count').text(`${totalCnt}`).addClass('circle-border');
+    $('#ready-count').text(`${readyCnt}`).addClass('circle-border');
+    $('#comp-count').text(`${compCnt}`).addClass('circle-border');
 }
 
 
