@@ -110,7 +110,7 @@ function displayTasks(tasks) {
 
         //append to the DOM
         $('#task-content').append(`
-        <tr class=${rowStatus}>
+        <tr class="${rowStatus} .col-md-4">
         <td>${tasks[i].task_name}</td>
         <td>${btnComp}</td>
         <td>${btnDel}</td>
