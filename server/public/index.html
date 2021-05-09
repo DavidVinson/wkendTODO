@@ -14,24 +14,25 @@
 </head>
 <body>
 
-    <h1>Weekend Warrior Challenge</h1>
     <div class="count-content">
-        <span class="black" id="total-count">TOTAL-COUNT</span>
-        <span class="yellow" id="ready-count">READY-COUNT</span>
-        <span class="green" id="comp-count">COMP-COUNT</span>
+        <h1>Weekend Warrior Challenge  <span class="blue-border" id="total-count">TOTAL_COUNT</span>
+        </h1>
+        <!-- below span elements collect additional info...decided it was too cluttered -->
+        <!-- <span class="yellow" id="ready-count">READY-COUNT</span>
+        <span class="green" id="comp-count">COMP-COUNT</span> -->
 
     </div>
-    <div>
+    <div class="form-content">
         <input class="task-input" id="task-name" placeholder="what's next?"/>
-        <button class="btn-add">add task</button>
+        <button class="btn-add btn-primary">add task</button>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive blue-border">
         <table class="table table-striped">
-            <thead>
+            <!-- <thead>
                 <th id="task-head">Task</th>
                 <th></th>
                 <th></th>
-            </thead>
+            </thead> -->
             <tbody id="task-content">
                 <!-- display tasks here -->
             </tbody>

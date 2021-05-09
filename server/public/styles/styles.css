@@ -8,8 +8,17 @@ h1 {
     color: blue;
 }
 
+span {
+    padding: 20px;
+}
+
 .count-content {
-    float: right;
+    margin: 15px;
+    /* float: right; */
+}
+
+.form-content {
+    margin: 15px;
 }
 
 .circle-border {
@@ -29,6 +38,15 @@ table {
 .black {
     background-color: black;
     color: white;
+}
+
+.blue {
+    background-color: blue;
+    color: white;
+}
+
+.blue-border {
+    border: 2px solid blue;
 }
 
 .yellow {

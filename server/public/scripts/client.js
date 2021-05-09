@@ -12,7 +12,6 @@ function setButtonListeners() {
         fieldValidation();
     });
 
-        
     //button sets task complete via PUT
     $('#task-content').on('click', '.btn-comp', (event) => {
         console.log('complete button clicked');
@@ -121,7 +120,7 @@ function displayTasks(tasks) {
             rowStatus = 'table-success'; //bootstrap class
         }
         else {
-            rowStatus = 'table-dark'; //bootstrap class
+            rowStatus = 'table-secondary'; //bootstrap class
         }
 
         //append to the DOM
@@ -138,7 +137,7 @@ function displayTasks(tasks) {
 //display counters
 function displayCount(tasks) {
     //tasks = [ {task}, {task} ]
-    console.log(tasks);
+    // console.log(tasks);
     $('.count-content span').empty();
     let compCnt = 0;
     let readyCnt = 0;
@@ -148,15 +147,22 @@ function displayCount(tasks) {
         //check for count of completed tasks
         if (tasks[i].isComp) {
             compCnt += 1;
+            totalCnt -= 1;
         }
         else {
             readyCnt += 1;
         }
-    } 
-    //update the counts to the DOM
-    $('#total-count').text(`${totalCnt}`).addClass('circle-border');
-    $('#ready-count').text(`${readyCnt}`).addClass('circle-border');
-    $('#comp-count').text(`${compCnt}`).addClass('circle-border');
+    }
+    if (totalCnt === 0) {
+        $('#total-count').text(`WINNER`).removeClass('circle-border');
+    }
+    else {
+        //update the counts to the DOM
+        $('#total-count').text(`${totalCnt}`).addClass('circle-border');
+        //the below could be used for additiona count info
+        // $('#ready-count').text(`${readyCnt}`).addClass('circle-border');
+        // $('#comp-count').text(`${compCnt}`).addClass('circle-border');
+    }
 }
 
 
