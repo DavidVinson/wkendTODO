@@ -13,7 +13,7 @@ function setButtonListeners() {
     //button sets task complete via PUT
     $('#task-content').on('click', '.btn-comp', (event) => {
         console.log('complete button clicked');
-        $(event.target).closest('tr').addClass('green');
+        // $(event.target).closest('tr').addClass('green');
         completeTask(event);
     });
 
@@ -101,10 +101,10 @@ function displayTasks(tasks) {
         let btnComp = `<button class="btn-comp" data-id=${tasks[i].id}>Complete</button>`;
         let rowStatus = '';
         if (tasks[i].isComp) {
-            rowStatus = 'table-success';
+            rowStatus = 'table-success'; //bootstrap class
         }
         else {
-            rowStatus = 'table-dark';
+            rowStatus = 'table-dark'; //bootstrap class
         }
 
         //append to the DOM
