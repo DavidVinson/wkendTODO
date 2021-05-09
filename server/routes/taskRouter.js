@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
     // console.log('get tasks here');
-    const queryText = `SELECT * FROM "tasks" ORDER BY "isComp" DESC;`;
+    const queryText = `SELECT * FROM "tasks" ORDER BY "isComp" DESC, "completed_at" ASC;`;
     pool.query(queryText)
     .then((result) => {
         // console.log(result);
