@@ -96,16 +96,15 @@ function displayTasks(tasks) {
     console.log(tasks);
     $('#task-content').empty();
     for (let i=0; i < tasks.length; i++) {
-
         //make buttons to complete and delete a task
         let btnDel = `<button class="btn-del" data-id=${tasks[i].id}>Delete</button>`;
         let btnComp = `<button class="btn-comp" data-id=${tasks[i].id}>Complete</button>`;
         let rowStatus = '';
         if (tasks[i].isComp) {
-            rowStatus = 'green';
+            rowStatus = 'table-success';
         }
         else {
-            rowStatus = 'yellow';
+            rowStatus = 'table-dark';
         }
 
         //append to the DOM
@@ -129,7 +128,6 @@ function displayCount(tasks) {
     let totalCnt = tasks.length;
     
     for (let i=0; i < tasks.length; i++) {
-
         //check for count of completed tasks
         if (tasks[i].isComp) {
             compCnt += 1;
@@ -138,11 +136,10 @@ function displayCount(tasks) {
             readyCnt += 1;
         }
     } 
-
     //update the counts to the DOM
-    $('#total-count').text(`${totalCnt}`);
-    $('#ready-count').text(`${readyCnt}`);
-    $('#comp-count').text(`${compCnt}`);
+    $('#total-count').text(`${totalCnt}`).addClass('circle-border');
+    $('#ready-count').text(`${readyCnt}`).addClass('circle-border');
+    $('#comp-count').text(`${compCnt}`).addClass('circle-border');
 }
 
 
