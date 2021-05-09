@@ -1,5 +1,23 @@
+
+html, body {
+    margin: 10px;
+}
+
 h1 {
     color: blue;
+}
+
+.count-content {
+    float: right;
+}
+
+.circle-border {
+    border-radius: 50%;
+}
+
+table {
+    width: 100%;
+    text-align: center;
 }
 
 .green {
@@ -14,4 +32,8 @@ h1 {
 
 .yellow {
     background-color: yellow;
+}
+
+.orange-border {
+    border: 5px solid orange;
 }
