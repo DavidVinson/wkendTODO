@@ -60,3 +60,7 @@ table {
 .red-border {
     border: 2px solid red;
 }
+
+footer {
+    float: right;
+}

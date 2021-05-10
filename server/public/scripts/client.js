@@ -116,8 +116,10 @@ function displayTasks(tasks) {
         let btnDel = `<button class="btn-del" data-id=${tasks[i].id}>Delete</button>`;
         let btnComp = `<button class="btn-comp" data-id=${tasks[i].id}>Complete</button>`;
         let rowStatus = '';
+        let compTime = formatTimestamp(tasks[i].completed_at);
         if (tasks[i].isComp) {
             rowStatus = 'table-success'; //bootstrap class
+            btnComp = `<button class="btn-comp" data-id=${tasks[i].id}>${compTime}</button>`
         }
         else {
             rowStatus = 'table-secondary'; //bootstrap class
@@ -170,6 +172,16 @@ function displayCount(tasks) {
 function clearFields() {
     console.log('fields are clear');
     $('#task-name').val('');
+}
+
+//formats timestamp to just date
+function formatTimestamp(timestamp) {
+    // console.log(timestamp);
+    let tstamp = timestamp;
+    if (!tstamp) {
+        return;
+    }
+    return tstamp.slice(0, tstamp.indexOf(tstamp.match(/T/g)));
 }
 
 
