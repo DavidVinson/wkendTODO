@@ -122,7 +122,7 @@ function displayTasks(tasks) {
             btnComp = `<button class="btn-comp" data-id=${tasks[i].id}>${compTime}</button>`
         }
         else {
-            rowStatus = 'table-secondary'; //bootstrap class
+            rowStatus = 'table-warning'; //bootstrap class
         }
 
         //append to the DOM
