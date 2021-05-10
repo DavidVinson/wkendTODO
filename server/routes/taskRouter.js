@@ -71,7 +71,7 @@ router.delete('/:id', (req, res) => {
     pool.query(queryText, [taskid])
     .then((result) => {
         // console.log(result);
-        res.sendStatus(200);
+        res.sendStatus(200); //use a 202 'Accepted'
     })
     .catch((error) => {
         console.log(`the error: ${error}`);
