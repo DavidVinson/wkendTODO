@@ -7,7 +7,7 @@ if (process.env.DATABASE_URL) {
     config = {
         connectionString: process.env.DATABASE_URL,
         ssl: { rejectUnauthorized: false},
-    }
+    };
 
 } else {
     config = {
@@ -16,7 +16,8 @@ if (process.env.DATABASE_URL) {
         port: 5432,
         max: 10,
         idleTimeoutMillis: 30000
-    }
+    };
+}
 
 const pool = new pg.Pool(config);
 
