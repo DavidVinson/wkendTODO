@@ -1,12 +1,20 @@
 const pg = require('pg')
 
 //database connection
-const pool = new pg.Pool({
-    database: 'taskapp',
-    host: 'localhost',
-    port: 5432,
-    max: 10,
-    idleTimeoutMillis: 30000
+
+if (process.env.DATABASE_URL) {
+    const pool = new pg.Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false},
+});
+
+} else {
+    const pool = new pg.Pool({
+        database: 'taskapp',
+        host: 'localhost',
+        port: 5432,
+        max: 10,
+        idleTimeoutMillis: 30000
 });
 
 //using postgres to connect db
